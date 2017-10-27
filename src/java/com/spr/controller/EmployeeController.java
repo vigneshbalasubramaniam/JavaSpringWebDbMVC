@@ -5,6 +5,7 @@
  */
 
 package com.spr.controller;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,10 +26,13 @@ public class EmployeeController {
  public String viewUser(@ModelAttribute("web") Employee employee,ModelMap model)
          {
              emp.insert(employee.getEid(),employee.getEname(),employee.getStreet(),employee.getLocation());
-             model.addAttribute("eid",employee.getEid());
+            /* model.addAttribute("eid",employee.getEid());
              model.addAttribute("ename",employee.getEname());
              model.addAttribute("street",employee.getStreet());
-             model.addAttribute("location",employee.getLocation());
+             model.addAttribute("location",employee.getLocation());*/
+             List list= emp.display();
+             model.addAttribute("list",list);
              return "result";
          }
+ 
 }

@@ -7,6 +7,8 @@
 package com.spr.controller;
 
 import java.sql.Types;
+import java.util.Iterator;
+import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class EmployeeDao {
@@ -16,6 +18,7 @@ public class EmployeeDao {
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    
      public void insert(int eid,String ename,String street,String location)
     {
         //Inserting records into db
@@ -25,5 +28,10 @@ public class EmployeeDao {
         jdbcTemplate.update("insert into employees values(?,?,?,?)",params,types);
         System.out.print("Record Inserted");
     }
-    
+    public List display()
+        {
+            //Display record using list
+            List list=jdbcTemplate.queryForList("select * from employees");
+            return list;
+        }
 }
